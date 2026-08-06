@@ -150,7 +150,26 @@ nav.main-nav a {
 }
 nav.main-nav a:hover { color: var(--gold-bright); }
 
-.header-actions { display: flex; align-items: center; gap: 16px; }
+.header-actions { display: flex; align-items: center; gap: 14px; }
+
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  flex-shrink: 0;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+.icon-btn svg { width: 19px; height: 19px; }
+.icon-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold-bright);
+  transform: translateY(-2px);
+}
 .menu-toggle {
   display: none;
   background: none;
