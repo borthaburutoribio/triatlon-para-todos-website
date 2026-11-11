@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Área de atletas · Triatlón Para Todos</title>
+<meta name="description" content="Ingreso para atletas de Triatlón Para Todos: tu semana de entrenamiento, la cuenta regresiva a tu carrera, el mensaje de tu coach y el muro del equipo.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0a0a0c">
+<link rel="icon" href="../assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css?v=1">
+<link rel="stylesheet" href="atletas.css?v=2">
+</head>
+<body class="a-page">
+<a class="a-skip" href="#contenido">Saltar al contenido</a>
+
+<div class="a-bar">
+  <a href="../" class="brand">
+    <img src="../assets/img/logo.png" alt="" width="42" height="42">
+    <span class="brand-name">TRIATLÓN <span>PARA TODOS</span></span>
+  </a>
+  <button class="a-out" type="button" data-logout hidden>Salir</button>
+</div>
+
+<main id="contenido">
+
+  <!-- INGRESO -->
+  <section class="login" data-view="login">
+    <div class="login-art" aria-hidden="true">
+      <img src="../assets/img/post4-runners-atardecer.png" alt="">
+    </div>
+    <div class="login-box">
+      <p class="eyebrow">Solo para el equipo</p>
+      <h1>Área de atletas</h1>
+      <p class="login-sub">Entrá con el usuario y la clave que te pasó tu coach.</p>
+      <form class="login-form" novalidate>
+        <label for="u">Usuario</label>
+        <input id="u" name="usuario" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+        <label for="c">Clave</label>
+        <div class="pass">
+          <input id="c" name="clave" type="password" autocomplete="current-password" required>
+          <button type="button" class="pass-toggle" aria-pressed="false" aria-label="Mostrar clave">Ver</button>
+        </div>
+        <p class="login-error" role="alert" hidden></p>
+        <button class="btn btn-primary login-go" type="submit">Entrar</button>
+      </form>
+      <p class="login-help">Si te olvidaste la clave, <a href="https://wa.me/5491156224730?text=Hola!%20Me%20olvid%C3%A9%20la%20clave%20del%20%C3%A1rea%20de%20atletas" target="_blank" rel="noopener">pedila por WhatsApp</a>.</p>
+      <p class="login-demo"><button type="button" class="text-link" data-demo>Ver una ficha de ejemplo</button> para conocerla por dentro.</p>
+    </div>
+  </section>
+
+  <!-- PANEL -->
+  <section class="dash" data-view="dash" hidden>
+    <div class="dash-head">
+      <div>
+        <p class="eyebrow" data-meta></p>
+        <h1 data-hello>Hola</h1>
+      </div>
+      <div class="race" data-race hidden>
+        <p class="race-n" data-race-days></p>
+        <p class="race-l" data-race-label></p>
+        <p class="race-name" data-race-name></p>
+      </div>
+    </div>
+    <p class="dash-sample" data-sample hidden>Esta es una ficha de ejemplo para mostrar el área de atletas. La atleta, las sesiones, la carrera y los mensajes del muro son inventados: cada atleta ve los suyos.</p>
+
+    <div class="dash-grid">
+      <div class="dash-main">
+        <div class="week-head">
+          <h2 class="dash-h">Tu semana</h2>
+          <a class="tp" href="https://app.trainingpeaks.com/" target="_blank" rel="noopener">Abrir TrainingPeaks ↗</a>
+        </div>
+        <div class="vol" data-vol aria-label="Minutos de la semana por disciplina"></div>
+        <div class="days" role="tablist" aria-label="Días de entrenamiento" data-days></div>
+        <div class="day-progress"><span data-progress-text></span><span class="bar-track"><span class="bar-fill" data-progress></span></span></div>
+        <div class="day-body" role="tabpanel" data-day></div>
+      </div>
+
+      <aside class="dash-side">
+        <article class="card card-note">
+          <h2 class="dash-h">De tu coach</h2>
+          <blockquote data-message></blockquote>
+        </article>
+
+        <article class="card" aria-labelledby="r-h">
+          <h2 class="dash-h" id="r-h">Calculá tu ritmo</h2>
+          <div class="chips" role="radiogroup" aria-label="Disciplina" data-disc></div>
+          <div class="chips chips-sm" aria-label="Distancias de carrera" data-dist></div>
+          <div class="pace-form">
+            <label>Distancia <span data-unit>km</span><input type="number" inputmode="decimal" min="0" step="any" data-d></label>
+            <label>Horas<input type="number" inputmode="numeric" min="0" data-h></label>
+            <label>Min<input type="number" inputmode="numeric" min="0" max="59" data-m></label>
+            <label>Seg<input type="number" inputmode="numeric" min="0" max="59" data-s></label>
+          </div>
+          <p class="pace-out" data-pace aria-live="polite">Poné distancia y tiempo objetivo.</p>
+        </article>
+
+        <article class="card">
+          <h2 class="dash-h">Objetivos</h2>
+          <ul class="goals" data-goals></ul>
+        </article>
+
+        <article class="card">
+          <h2 class="dash-h">Notas de tu coach</h2>
+          <ul class="notes" data-notes></ul>
+        </article>
+      </aside>
+    </div>
+
+    <section class="wall" aria-labelledby="w-h">
+      <div class="wall-head">
+        <div>
+          <p class="eyebrow">Entre nosotros</p>
+          <h2 class="dash-h" id="w-h">Muro del equipo</h2>
+        </div>
+        <a class="btn btn-ghost" data-wall-add target="_blank" rel="noopener">Sumá lo tuyo</a>
+      </div>
+      <ul class="wall-list" data-wall></ul>
+    </section>
+  </section>
+
+</main>
+
+<script src="atletas.js?v=1" defer></script>
+</body>
+</html>
