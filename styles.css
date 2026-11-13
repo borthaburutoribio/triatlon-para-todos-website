@@ -214,9 +214,9 @@ nav.main-nav a:hover { color: var(--gold-bright); }
   background-image:
     linear-gradient(180deg, rgba(10,10,12,0.55) 0%, rgba(10,10,12,0.75) 55%, var(--bg) 100%),
     linear-gradient(90deg, rgba(10,10,12,0.85) 0%, rgba(10,10,12,0.35) 60%),
-    url("assets/img/hero-runners.png");
+    url("assets/img/equipo-tpt-bicis-dique-san-juan.jpg");
   background-size: cover;
-  background-position: center 30%;
+  background-position: center 40%;
   filter: saturate(1.05);
 }
 .hero-content { position: relative; z-index: 2; max-width: 780px; padding: 100px 0 80px; }
@@ -696,3 +696,33 @@ footer {
   .hero-ctas { flex-direction: column; align-items: stretch; }
   .hero-ctas .btn { justify-content: center; }
 }
+
+/* ---- Profes, galería, mapa de sedes (2026-11) ---- */
+.coach-list { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.coach-list li { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--red); border-radius: var(--radius-sm); padding: 18px; display: grid; gap: 4px; }
+.coach-list b { font: 400 1.7rem/1 var(--font-display); letter-spacing: .02em; text-transform: uppercase; }
+.coach-list span { color: var(--text-muted); font-size: .9rem; }
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; gap: 12px; }
+.gallery figure { overflow: hidden; border-radius: var(--radius-sm); background: var(--bg-card); }
+.gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.gallery figure:hover img { transform: scale(1.04); }
+.g-wide { grid-column: span 2; }
+.g-tall { grid-row: span 2; }
+.testi-source { margin-top: 22px; color: var(--text-faint); font-size: .88rem; }
+.testi-source a { color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px; }
+.sedes-map-wrap { margin: 36px 0 28px; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--bg-card); }
+.sedes-map-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--border); }
+.sedes-map-bar span { color: var(--text-faint); font-size: .82rem; margin-left: auto; }
+.map-chip { min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--border-strong); background: transparent; color: var(--text-muted); font: 600 .85rem var(--font-body); cursor: pointer; }
+.map-chip.is-on { background: var(--text); color: var(--bg); border-color: var(--text); }
+.sedes-map { height: 420px; background: #1a1a1e; z-index: 0; }
+.sedes-pin { background: var(--red); color: #fff; border: 2px solid #fff; border-radius: 50%; width: 30px; height: 30px; display: grid; place-items: center; font: 700 .8rem var(--font-body); box-shadow: 0 2px 8px rgba(0,0,0,.4); }
+.leaflet-popup-content { font-family: var(--font-body); color: #111; margin: 12px 14px; }
+.leaflet-popup-content b { display: block; font-size: 1rem; }
+@media (max-width: 900px) {
+  .coach-list { grid-template-columns: repeat(2, 1fr); }
+  .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 170px; }
+  .sedes-map { height: 340px; }
+  .sedes-map-bar span { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .gallery img { transition: none; } }

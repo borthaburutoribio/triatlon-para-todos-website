@@ -7,7 +7,6 @@
   const $ = (s, r = document) => r.querySelector(s);
   const views = { login: $('[data-view="login"]'), dash: $('[data-view="dash"]') };
   const SESSION = 'tpt:sesion';
-  const WHATSAPP = '5491156224730';
   const DEMO = { usuario: 'prueba', clave: 'tpt-ejemplo-2027' }; // ficha de ejemplo, pública a propósito
   const DISC = { natacion: 'Natación', bici: 'Bici', running: 'Running', fuerza: 'Fuerza' };
   const fromB64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
@@ -99,11 +98,34 @@
       }
     }
 
-    $('[data-wall]').innerHTML = (data.muro || []).map((p) => `<li><p>${esc(p.texto)}</p><footer>${esc(p.autor)}${p.sede ? ' · ' + esc(p.sede) : ''} · ${esc(fmtDate(p.fecha))}</footer></li>`).join('') || '<li><p>Todavía no hay nada en el muro. Estrenalo vos.</p></li>';
-    $('[data-wall-add]').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Hola! Soy ' + first + ' y quiero sumar esto al muro del equipo: ');
+    renderWall(id, data, first);
 
     renderWeek(id, data);
     requestAnimationFrame(() => views.dash.classList.add('in'));
+  }
+
+  /* ---------- Muro del equipo ----------
+     Hoy los mensajes nuevos y los aplausos se guardan en el navegador de cada uno.
+     Para que los vea todo el equipo hace falta una base de datos: se conecta acá, en save(). */
+  function renderWall(id, data, first) {
+    const list = $('[data-wall]');
+    const kMine = 'tpt:muro:' + id, kClap = 'tpt:aplausos:' + id;
+    let mine = store.get(kMine) || [];
+    const claps = store.get(kClap) || {};
+    const save = () => { store.set(kMine, mine); store.set(kClap, claps); };
+    $('[data-wall-note]').textContent = data.ejemplo ? 'En la ficha de ejemplo tu mensaje queda guardado solo en este navegador.' : 'Lo ve todo el equipo. Máximo 280 caracteres.';
+    const paint = () => {
+      const all = [...mine.map((p) => ({ ...p, k: 'm' + p.t, mine: 1 })), ...(data.muro || []).map((p, i) => ({ ...p, k: 'e' + i }))];
+      list.innerHTML = all.map((p) => `<li class="${p.mine ? 'wall-mine' : ''}"><p>${esc(p.texto)}</p><footer><span>${esc(p.autor)}${p.sede ? ' · ' + esc(p.sede) : ''} · ${esc(fmtDate(p.fecha))}</span><button type="button" class="clap" data-clap="${p.k}" aria-pressed="${!!claps[p.k]}">${claps[p.k] ? 'Aplaudiste' : 'Aplaudir'}</button></footer></li>`).join('') || '<li><p>Todavía no hay nada en el muro. Estrenalo vos.</p></li>';
+    };
+    list.addEventListener('click', (e) => { const b = e.target.closest('[data-clap]'); if (!b) return; if (claps[b.dataset.clap]) delete claps[b.dataset.clap]; else claps[b.dataset.clap] = 1; save(); paint(); });
+    $('[data-wall-form]').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const t = $('#w-t'); const texto = t.value.trim(); if (!texto) return;
+      mine = [{ t: Date.now(), texto, autor: first, sede: data.sede, fecha: new Date().toISOString().slice(0, 10) }, ...mine];
+      t.value = ''; save(); paint();
+    });
+    paint();
   }
 
   function renderWeek(id, data) {

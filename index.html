@@ -8,7 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=1">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
 
@@ -54,7 +55,7 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="wrap hero-content">
-    <p class="hero-claim">Somos la comunidad y agencia de triatlón líder de la Argentina.</p>
+    <p class="hero-claim">+200 atletas con plan individual. Del primer 5K al Ironman.</p>
     <div class="hero-badge"><span class="dot"></span> Taller de Amigos · Desde Buenos Aires</div>
     <h1>Triatlón sin límites.<br><em>Resultados reales.</em></h1>
     <p class="lead">Entrená donde estés y alcanzá tus objetivos, sin importar tu nivel. De tu primer Sprint a tu primer Ironman, con un equipo que entrena al aire libre en toda la ciudad.</p>
@@ -64,7 +65,7 @@
     </div>
     <div class="hero-stats">
       <div>
-        <div class="stat-num">10,1K</div>
+        <div class="stat-num">11,4K</div>
         <div class="stat-label">Comunidad en Instagram</div>
       </div>
       <div>
@@ -72,8 +73,8 @@
         <div class="stat-label">Sedes activas</div>
       </div>
       <div>
-        <div class="stat-num">489</div>
-        <div class="stat-label">Entrenamientos compartidos</div>
+        <div class="stat-num">8</div>
+        <div class="stat-label">Entrenadores</div>
       </div>
       <div>
         <div class="stat-num">100%</div>
@@ -232,6 +233,15 @@
       </div>
     </div>
 
+    <div class="sedes-map-wrap">
+      <div class="sedes-map-bar">
+        <button type="button" class="map-chip is-on" data-zone="ba">Buenos Aires y Tigre</button>
+        <button type="button" class="map-chip" data-zone="mza">Mendoza</button>
+        <span>Puntos aproximados. El lugar exacto de encuentro te lo pasamos por WhatsApp.</span>
+      </div>
+      <div id="sedesMap" class="sedes-map" role="img" aria-label="Mapa con las sedes de Triatlón Para Todos"></div>
+    </div>
+
     <div class="locations-grid">
       <div class="location-card">
         <div class="loc-num">01 — CABALLITO</div>
@@ -304,7 +314,7 @@
     </div>
     <div class="stats-grid">
       <div class="stat-block">
-        <div class="num">10,1K</div>
+        <div class="num">11,4K</div>
         <div class="lbl">Comunidad en Instagram</div>
       </div>
       <div class="stat-block">
@@ -312,60 +322,98 @@
         <div class="lbl">Sedes en 3 provincias</div>
       </div>
       <div class="stat-block">
-        <div class="num">+150</div>
-        <div class="lbl">Triatletas activos</div>
+        <div class="num">+200</div>
+        <div class="lbl">Atletas con plan individual</div>
       </div>
       <div class="stat-block">
-        <div class="num">6</div>
-        <div class="lbl">Años formando equipo</div>
+        <div class="num">57</div>
+        <div class="lbl">Largadas en Ironman San Juan 2026</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= TESTIMONIOS ================= -->
+<!-- ================= PROFES ================= -->
+<section class="section section-tight" id="profes">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Los profes</div>
+      <h2>8 entrenadores, un método</h2>
+      <p>Cada uno tiene su fuerte. Así los presentamos en el equipo.</p>
+    </div>
+    <ul class="coach-list">
+      <li><b>Walter</b><span>El galgo del run</span></li>
+      <li><b>La Colo</b><span>Reina de las profundidades</span></li>
+      <li><b>Nahuel</b><span>Cyborg tech</span></li>
+      <li><b>Yani</b><span>La furia de Kona</span></li>
+      <li><b>Meli</b><span>Furia escarlata</span></li>
+      <li><b>Vero</b><span>La maestra del tiempo y la paciencia</span></li>
+      <li><b>Juanchi</b><span>El titán de las rutas</span></li>
+      <li><b>Lean</b><span>El estratega</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= GALERÍA ================= -->
+<section class="section section-tight" id="equipo" style="background:var(--bg-elevated); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">En carrera</div>
+      <h2>San Juan 2026, con el equipo</h2>
+      <p>57 largadas entre el 5150 y el Full. Fotos nuestras, de esos días.</p>
+    </div>
+    <div class="gallery">
+      <figure class="g-wide"><img src="assets/img/equipo-tpt-ironman-san-juan-2026.jpg" width="864" height="614" loading="lazy" alt="Equipo de Triatlón Para Todos con la indumentaria roja y naranja después de la carrera en San Juan"></figure>
+      <figure class="g-tall"><img src="assets/img/atletas-tpt-llegada-san-juan.jpg" width="1200" height="1600" loading="lazy" alt="Cuatro atletas de TPT abrazados al salir del agua en San Juan"></figure>
+      <figure><img src="assets/img/ciclista-tpt-ironman-san-juan.jpg" width="1600" height="1600" loading="lazy" alt="Ciclista de TPT en el tramo de bici de Ironman San Juan, con la cordillera de fondo"></figure>
+      <figure><img src="assets/img/atletas-tpt-antes-de-largar.jpg" width="972" height="594" loading="lazy" alt="Atletas de TPT charlando antes de largar"></figure>
+      <figure class="g-wide"><img src="assets/img/atletas-tpt-rodada-dique.jpg" width="842" height="574" loading="lazy" alt="Rodada del equipo TPT junto al dique en San Juan"></figure>
+      <figure><img src="assets/img/clara-balbin-finisher-mundial-70-3-niza.jpg" width="1074" height="1080" loading="lazy" alt="Clara Balbín con su medalla de finisher en el Mundial Ironman 70.3 de Niza"></figure>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="testimonios">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Testimonios</div>
       <h2>Lo que dice el equipo</h2>
-      <p>Atletas de Triatlón Para Todos que ya cruzaron su meta.</p>
+      <p>Tres atletas que largaron en San Juan con TPT.</p>
     </div>
     <div class="testi-grid">
       <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Empecé sin saber nadar bien y en un año terminé mi primer 70.3. El grupo de Plaza Irlanda se volvió mi segunda familia."</p>
+        <p class="testi-quote">"Está muy presente la sensación de equipo. Da la tranquilidad de saber que no estoy solo, sin importar dónde vivas."</p>
         <div class="testi-author">
-          <div class="testi-avatar">MP</div>
+          <div class="testi-avatar">A</div>
           <div>
-            <div class="testi-name">Martín P.</div>
-            <div class="testi-role">Finisher, Ironman 70.3 San Juan</div>
+            <div class="testi-name">Anabella</div>
+            <div class="testi-role">Atleta TPT · Uruguay</div>
           </div>
         </div>
       </div>
       <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Lo que más valoro es que se adaptan a tu nivel real, no a lo que te gustaría tener. Progresé sin lesionarme ni una vez."</p>
+        <p class="testi-quote">"Una llamada de cualquiera de los 8 profes justo cuando estaba flaqueando. Fue el incentivo que necesitaba."</p>
         <div class="testi-author">
-          <div class="testi-avatar">CG</div>
+          <div class="testi-avatar">G</div>
           <div>
-            <div class="testi-name">Carla G.</div>
-            <div class="testi-role">Sede Barrancas de Belgrano</div>
+            <div class="testi-name">Geraldine</div>
+            <div class="testi-role">Atleta TPT</div>
           </div>
         </div>
       </div>
       <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Entreno en Tigre hace dos años. Los coaches conocen a cada uno por nombre y eso en un grupo grande no es fácil de lograr."</p>
+        <p class="testi-quote">"Me sentí muy cómodo con todo. Agradezco ser parte de ustedes en mi debut como Ironman 70.3."</p>
         <div class="testi-author">
-          <div class="testi-avatar">FR</div>
+          <div class="testi-avatar">LS</div>
           <div>
-            <div class="testi-name">Facundo R.</div>
-            <div class="testi-role">Sede Tigre</div>
+            <div class="testi-name">Luis Sánchez</div>
+            <div class="testi-role">Atleta TPT</div>
           </div>
         </div>
       </div>
     </div>
+    <p class="testi-source">Lo contaron después de Ironman San Juan 2026. Están publicados en <a href="https://www.instagram.com/p/Del2i7vkWwp/" target="_blank" rel="noopener">nuestro Instagram</a>.</p>
   </div>
 </section>
 
@@ -492,5 +540,7 @@
 </footer>
 
 <script src="script.js?v=1"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+<script src="sedes-mapa.js?v=1" defer></script>
 </body>
 </html>
