@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadoras de triatlón: cortes, ritmos y zonas | Triatlón Para Todos</title>
+<meta name="description" content="Calculá si llegás al corte de un Ironman o un 70.3, tu ritmo objetivo en natación, bici y running, tu ritmo de natación (CSS) y tus zonas de entrenamiento.">
+<meta name="theme-color" content="#f4f1ea">
+<link rel="icon" href="../assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../atletas/atletas.css?v=5">
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="bar">
+  <a href="../" class="bar-logo"><img src="../assets/img/logo-tpt-oscuro.png" alt="Triatlón Para Todos" width="416" height="152"></a>
+  <nav class="tabs" aria-label="Secciones">
+    <a href="../">Inicio</a><a href="../#sedes">Dónde entrenamos</a><a href="../atletas/">Zona de atletas</a><a href="https://wa.me/541156224730" target="_blank" rel="noopener">WhatsApp</a>
+  </nav>
+</header>
+<main id="contenido">
+  <div class="zone in">
+    <div class="hello">
+      <h1>Calculadoras de triatlón</h1>
+      <p>Natación, bici y running. Poné tus números y mirá dónde estás parado para tu próxima carrera.</p>
+    </div>
+    <section class="sec" aria-label="Herramientas">
+      <div class="tools">
+
+        <article class="tool">
+          <h3>¿Llego al corte?</h3>
+          <p class="tool-d">Poné tus ritmos de hoy y mirá cuánto te da la carrera completa.</p>
+          <div class="seg" role="radiogroup" aria-label="Distancia" data-race></div>
+          <div class="fields">
+            <label>Natación, cada 100 m<span class="mmss"><input type="number" inputmode="numeric" min="0" value="2" data-sw-m aria-label="minutos"> : <input type="number" inputmode="numeric" min="0" max="59" value="15" data-sw-s aria-label="segundos"></span></label>
+            <label>Bici, km/h<input type="number" inputmode="decimal" min="1" step="any" value="27" data-bk></label>
+            <label>Running, por km<span class="mmss"><input type="number" inputmode="numeric" min="0" value="6" data-rn-m aria-label="minutos"> : <input type="number" inputmode="numeric" min="0" max="59" value="15" data-rn-s aria-label="segundos"></span></label>
+            <label>Transiciones, min<input type="number" inputmode="numeric" min="0" value="12" data-tr></label>
+          </div>
+          <div class="bar3" data-split aria-hidden="true"></div>
+          <dl class="out3" data-corte></dl>
+          <p class="tool-n" data-corte-n></p>
+        </article>
+
+        <article class="tool">
+          <h3>Ritmo objetivo</h3>
+          <p class="tool-d">Al revés: decí en cuánto querés hacer un tramo y te da el ritmo.</p>
+          <div class="seg" role="radiogroup" aria-label="Disciplina" data-disc></div>
+          <div class="seg seg-s" aria-label="Distancias de carrera" data-dist></div>
+          <div class="fields f4">
+            <label>Distancia, <span data-unit>km</span><input type="number" inputmode="decimal" min="0" step="any" data-d></label>
+            <label>Horas<input type="number" inputmode="numeric" min="0" data-h></label>
+            <label>Min<input type="number" inputmode="numeric" min="0" max="59" data-m></label>
+            <label>Seg<input type="number" inputmode="numeric" min="0" max="59" data-s></label>
+          </div>
+          <p class="big" data-pace aria-live="polite">Poné distancia y tiempo.</p>
+        </article>
+
+        <article class="tool">
+          <h3>Tu ritmo de natación (CSS)</h3>
+          <p class="tool-d">Nadá 400 m y 200 m a fondo, con descanso entre los dos, y cargá los tiempos.</p>
+          <div class="fields">
+            <label>400 m<span class="mmss"><input type="number" inputmode="numeric" min="0" value="8" data-c4m aria-label="minutos"> : <input type="number" inputmode="numeric" min="0" max="59" value="20" data-c4s aria-label="segundos"></span></label>
+            <label>200 m<span class="mmss"><input type="number" inputmode="numeric" min="0" value="4" data-c2m aria-label="minutos"> : <input type="number" inputmode="numeric" min="0" max="59" value="0" data-c2s aria-label="segundos"></span></label>
+          </div>
+          <p class="big" data-css aria-live="polite"></p>
+        </article>
+
+        <article class="tool">
+          <h3>Zonas de entrenamiento</h3>
+          <p class="tool-d">Con tu ritmo de umbral en running o tu FTP en bici.</p>
+          <div class="seg" role="radiogroup" aria-label="Disciplina" data-zdisc></div>
+          <div class="fields">
+            <label data-z-run>Ritmo de umbral, por km<span class="mmss"><input type="number" inputmode="numeric" min="0" value="5" data-zm aria-label="minutos"> : <input type="number" inputmode="numeric" min="0" max="59" value="20" data-zs aria-label="segundos"></span></label>
+            <label data-z-bike hidden>FTP, watts<input type="number" inputmode="numeric" min="1" value="200" data-ftp></label>
+          </div>
+          <table class="zt"><tbody data-zonas></tbody></table>
+          <p class="tool-n">Referencia general (zonas de Friel para running y de Coggan para bici). Las tuyas las ajusta tu coach.</p>
+        </article>
+
+      </div>
+    </section>
+  </div>
+</main>
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const num = (el) => +el.value || 0;
+  /* ---------- Herramientas ---------- */
+  const mmss = (sec) => { const t = Math.round(sec); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
+  const hms = (sec) => { const t = Math.round(sec); const h = Math.floor(t / 3600), m = Math.floor((t % 3600) / 60); return h + ' h ' + String(m).padStart(2, '0'); };
+  const seg = (el, opts, on, cb) => {
+    el.innerHTML = opts.map((o) => `<button type="button" role="radio" aria-checked="${o === on}" data-v="${o}">${o}</button>`).join('');
+    el.addEventListener('click', (e) => { const b = e.target.closest('[data-v]'); if (!b) return; $$('button', el).forEach((x) => x.setAttribute('aria-checked', x === b)); cb(b.dataset.v); });
+  };
+  // Distancias oficiales: natación en metros, bici y running en km. Cortes de las carreras marca Ironman.
+  const RACES = {
+    'Sprint': { sw: 750, bk: 20, rn: 5 },
+    'Olímpico': { sw: 1500, bk: 40, rn: 10 },
+    '70.3': { sw: 1900, bk: 90, rn: 21.1, cut: { sw: 70, bk: 330, fin: 510 } },
+    'Ironman': { sw: 3800, bk: 180, rn: 42.2, cut: { sw: 140, bk: 630, fin: 1020 } }
+  };
+
+  // 1. ¿Llego al corte?
+  let race = '70.3';
+  function corte() {
+    const r = RACES[race];
+    const sw = (r.sw / 100) * (num($('[data-sw-m]')) * 60 + num($('[data-sw-s]')));
+    const bk = num($('[data-bk]')) > 0 ? (r.bk / num($('[data-bk]'))) * 3600 : 0;
+    const rn = r.rn * (num($('[data-rn-m]')) * 60 + num($('[data-rn-s]')));
+    const tr = num($('[data-tr]')) * 60; const tot = sw + bk + rn + tr;
+    if (!(sw > 0 && bk > 0 && rn > 0)) { $('[data-corte]').innerHTML = ''; $('[data-corte-n]').textContent = 'Completá los tres ritmos.'; return; }
+    $('[data-split]').innerHTML = [[sw, 'var(--nat)'], [bk, 'var(--bic)'], [rn, 'var(--run)']].map(([v, c]) => `<i style="width:${(v / tot) * 100}%;background:${c}"></i>`).join('');
+    $('[data-corte]').innerHTML = [['Natación', sw], ['Bici', bk], ['Running', rn]].map(([l, v]) => `<div><dt>${l}</dt><dd>${hms(v)}</dd></div>`).join('') + `<div class="tot"><dt>Total</dt><dd>${hms(tot)}</dd></div>`;
+    const n = $('[data-corte-n]'); n.className = 'tool-n';
+    if (!r.cut) { n.textContent = 'En Sprint y Olímpico el corte lo pone cada carrera: miralo en la guía del atleta.'; return; }
+    const fails = [];
+    if (sw > r.cut.sw * 60) fails.push('natación (' + hms(r.cut.sw * 60) + ')');
+    if (sw + tr / 2 + bk > r.cut.bk * 60) fails.push('bici (' + hms(r.cut.bk * 60) + ' desde la largada)');
+    if (tot > r.cut.fin * 60) fails.push('llegada (' + hms(r.cut.fin * 60) + ')');
+    if (fails.length) { n.classList.add('no'); n.textContent = 'Con estos ritmos no pasás el corte de ' + fails.join(' ni el de ') + '. Hablalo con tu coach: se entrena.'; }
+    else { n.classList.add('ok'); n.textContent = 'Llegás. Te sobran ' + hms(r.cut.fin * 60 - tot) + ' al corte final de ' + hms(r.cut.fin * 60) + '. Los cortes pueden cambiar según la carrera.'; }
+  }
+  seg($('[data-race]'), Object.keys(RACES), race, (v) => { race = v; corte(); });
+  $$('[data-sw-m],[data-sw-s],[data-bk],[data-rn-m],[data-rn-s],[data-tr]').forEach((i) => i.addEventListener('input', corte));
+  corte();
+
+  // 2. Ritmo objetivo
+  const DISC = { Running: 'rn', Bici: 'bk', 'Natación': 'sw' }; let disc = 'Running';
+  const dIn = $('[data-d]'), out = $('[data-pace]');
+  function ritmo() {
+    const d = parseFloat(dIn.value); const t = num($('[data-h]')) * 3600 + num($('[data-m]')) * 60 + num($('[data-s]'));
+    if (!(d > 0) || !(t > 0)) { out.textContent = 'Poné distancia y tiempo.'; return; }
+    if (disc === 'Running') out.innerHTML = `<b>${mmss(t / d)}</b>minutos por kilómetro`;
+    else if (disc === 'Natación') out.innerHTML = `<b>${mmss(t / (d / 100))}</b>cada 100 metros`;
+    else out.innerHTML = `<b>${(d / (t / 3600)).toFixed(1).replace('.', ',')}</b>km/h de promedio`;
+  }
+  seg($('[data-disc]'), Object.keys(DISC), disc, (v) => { disc = v; $('[data-unit]').textContent = v === 'Natación' ? 'm' : 'km'; dIn.value = ''; ritmo(); });
+  $('[data-dist]').innerHTML = Object.keys(RACES).map((r) => `<button type="button" data-r="${r}">${r}</button>`).join('');
+  $('[data-dist]').addEventListener('click', (e) => { const b = e.target.closest('[data-r]'); if (!b) return; dIn.value = RACES[b.dataset.r][DISC[disc]]; ritmo(); });
+  $$('[data-d],[data-h],[data-m],[data-s]').forEach((i) => i.addEventListener('input', ritmo));
+
+  // 3. CSS de natación: (T400 - T200) / 2 = ritmo cada 100 m
+  function css() {
+    const t4 = num($('[data-c4m]')) * 60 + num($('[data-c4s]')), t2 = num($('[data-c2m]')) * 60 + num($('[data-c2s]'));
+    const o = $('[data-css]');
+    if (!(t4 > t2 && t2 > 0)) { o.textContent = 'El tiempo de 400 m tiene que ser mayor que el de 200 m.'; return; }
+    o.innerHTML = `<b>${mmss((t4 - t2) / 2)}</b>cada 100 metros es tu ritmo de umbral en el agua`;
+  }
+  $$('[data-c4m],[data-c4s],[data-c2m],[data-c2s]').forEach((i) => i.addEventListener('input', css)); css();
+
+  // 4. Zonas
+  let zd = 'Running';
+  const ZR = [['Z1', 'Regenerativo', 1.29, null], ['Z2', 'Aeróbico', 1.14, 1.29], ['Z3', 'Tempo', 1.06, 1.13], ['Z4', 'Umbral', 0.99, 1.05], ['Z5', 'VO2 máx', null, 0.97]];
+  const ZB = [['Z1', 'Recuperación', null, 0.55], ['Z2', 'Resistencia', 0.56, 0.75], ['Z3', 'Tempo', 0.76, 0.90], ['Z4', 'Umbral', 0.91, 1.05], ['Z5', 'VO2 máx', 1.06, 1.20], ['Z6', 'Anaeróbico', 1.21, null]];
+  function zonas() {
+    const o = $('[data-zonas]');
+    $('[data-z-run]').hidden = zd !== 'Running'; $('[data-z-bike]').hidden = zd !== 'Bici';
+    if (zd === 'Running') {
+      const p = num($('[data-zm]')) * 60 + num($('[data-zs]')); if (!p) { o.innerHTML = ''; return; }
+      o.innerHTML = ZR.map(([z, n, a, b]) => `<tr><td>${z}</td><td>${n}</td><td>${a && b ? mmss(p * b) + ' a ' + mmss(p * a) : a ? 'más lento que ' + mmss(p * a) : 'más rápido que ' + mmss(p * b)} /km</td></tr>`).join('');
+    } else {
+      const f = num($('[data-ftp]')); if (!f) { o.innerHTML = ''; return; }
+      o.innerHTML = ZB.map(([z, n, a, b]) => `<tr><td>${z}</td><td>${n}</td><td>${a && b ? Math.round(f * a) + ' a ' + Math.round(f * b) : a ? 'más de ' + Math.round(f * a) : 'menos de ' + Math.round(f * b)} W</td></tr>`).join('');
+    }
+  }
+  seg($('[data-zdisc]'), ['Running', 'Bici'], zd, (v) => { zd = v; zonas(); });
+  $$('[data-zm],[data-zs],[data-ftp]').forEach((i) => i.addEventListener('input', zonas)); zonas();
+
+})();
+</script>
+</body>
+</html>
