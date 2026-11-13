@@ -36,9 +36,9 @@ async function seal(data, clave) {
 }
 
 const files = (await readdir(srcDir)).filter((f) => f.endsWith('.json') && !f.startsWith('_'));
-// _muro.json es el muro del equipo: el mismo para todos, va adentro de cada ficha.
-let muro = [];
-try { muro = JSON.parse(await readFile(path.join(srcDir, '_muro.json'), 'utf8')); } catch (_) {}
+// _equipo.json es el contenido comun (agenda, biblioteca, beneficios, muro): va adentro de cada ficha.
+let equipo = {};
+try { equipo = JSON.parse(await readFile(path.join(srcDir, '_equipo.json'), 'utf8')); } catch (_) {}
 await rm(outDir, { recursive: true, force: true });
 await mkdir(outDir, { recursive: true });
 for (const f of files) {
@@ -47,6 +47,6 @@ for (const f of files) {
   if (!usuario || !clave) { console.warn('Falta usuario o clave en', f); continue; }
   if (clave.length < 8) { console.warn('Clave muy corta (mínimo 8) en', f); continue; }
   const id = await fileId(usuario);
-  await writeFile(path.join(outDir, id + '.json'), JSON.stringify(await seal({ usuario, ...ficha, muro }, clave)));
+  await writeFile(path.join(outDir, id + '.json'), JSON.stringify(await seal({ usuario, ...equipo, ...ficha }, clave)));
   console.log('ok', usuario.padEnd(18), '->', id + '.json');
 }

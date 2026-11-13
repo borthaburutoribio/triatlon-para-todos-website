@@ -3,37 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Área de atletas · Triatlón Para Todos</title>
-<meta name="description" content="Ingreso para atletas de Triatlón Para Todos: tu semana de entrenamiento, la cuenta regresiva a tu carrera, el mensaje de tu coach y el muro del equipo.">
+<title>Zona de atletas · Triatlón Para Todos</title>
+<meta name="description" content="Ingreso para atletas de Triatlón Para Todos: muro del equipo, agenda, calculadoras de triatlón, biblioteca y beneficios.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#f4f1ea">
 <link rel="icon" href="../assets/img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css?v=1">
-<link rel="stylesheet" href="atletas.css?v=3">
+<link rel="stylesheet" href="atletas.css?v=4">
 </head>
-<body class="a-page">
-<a class="a-skip" href="#contenido">Saltar al contenido</a>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
 
-<div class="a-bar">
-  <a href="../" class="brand">
-    <img src="../assets/img/logo-tpt-oscuro.png" alt="Triatlón Para Todos" width="416" height="152">
-  </a>
-  <button class="a-out" type="button" data-logout hidden>Salir</button>
-</div>
+<header class="bar">
+  <a href="../" class="bar-logo"><img src="../assets/img/logo-tpt-oscuro.png" alt="Triatlón Para Todos" width="416" height="152"></a>
+  <nav class="tabs" aria-label="Secciones" data-tabs hidden>
+    <a href="#muro">Muro</a><a href="#agenda">Agenda</a><a href="#herramientas">Herramientas</a><a href="#biblioteca">Biblioteca</a><a href="#beneficios">Beneficios</a>
+  </nav>
+  <button class="out" type="button" data-logout hidden>Salir</button>
+</header>
 
 <main id="contenido">
 
-  <!-- INGRESO -->
   <section class="login" data-view="login">
-    <div class="login-art" aria-hidden="true">
-      <img src="../assets/img/atletas-tpt-llegada-san-juan.jpg" alt="">
-    </div>
+    <div class="login-art" aria-hidden="true"><img src="../assets/img/atletas-tpt-llegada-san-juan.jpg" alt=""></div>
     <div class="login-box">
-      <p class="eyebrow">Solo para el equipo</p>
-      <h1>Área de atletas</h1>
+      <p class="kick">Solo para el equipo</p>
+      <h1>Zona de atletas</h1>
       <p class="login-sub">Entrá con el usuario y la clave que te pasó tu coach.</p>
       <form class="login-form" novalidate>
         <label for="u">Usuario</label>
@@ -44,90 +41,107 @@
           <button type="button" class="pass-toggle" aria-pressed="false" aria-label="Mostrar clave">Ver</button>
         </div>
         <p class="login-error" role="alert" hidden></p>
-        <button class="btn btn-primary login-go" type="submit">Entrar</button>
+        <button class="go" type="submit">Entrar</button>
       </form>
-      <p class="login-help">Si te olvidaste la clave, <a href="https://wa.me/5491156224730?text=Hola!%20Me%20olvid%C3%A9%20la%20clave%20del%20%C3%A1rea%20de%20atletas" target="_blank" rel="noopener">pedila por WhatsApp</a>.</p>
-      <p class="login-demo"><button type="button" class="text-link" data-demo>Ver una ficha de ejemplo</button> para conocerla por dentro.</p>
+      <p class="login-help">Si te olvidaste la clave, <a href="https://wa.me/541156224730" target="_blank" rel="noopener">pedila por WhatsApp</a>.</p>
+      <p class="login-help"><button type="button" class="link" data-demo>Ver la zona por dentro</button></p>
     </div>
   </section>
 
-  <!-- PANEL -->
-  <section class="dash" data-view="dash" hidden>
-    <div class="dash-head">
-      <div>
-        <p class="eyebrow" data-meta></p>
-        <h1 data-hello>Hola</h1>
-      </div>
-      <div class="race" data-race hidden>
-        <p class="race-n" data-race-days></p>
-        <p class="race-l" data-race-label></p>
-        <p class="race-name" data-race-name></p>
-      </div>
+  <div class="zone" data-view="dash" hidden>
+    <div class="hello">
+      <h1 data-hello>Hola</h1>
+      <p data-meta></p>
     </div>
-    <p class="dash-sample" data-sample hidden>Esta es una ficha de ejemplo para mostrar el área de atletas. La atleta, las sesiones, la carrera y los mensajes del muro son inventados: cada atleta ve los suyos.</p>
 
-    <div class="dash-grid">
-      <div class="dash-main">
-        <div class="week-head">
-          <h2 class="dash-h">Tu semana</h2>
-          <a class="tp" href="https://app.trainingpeaks.com/" target="_blank" rel="noopener">Abrir TrainingPeaks ↗</a>
-        </div>
-        <div class="vol" data-vol aria-label="Minutos de la semana por disciplina"></div>
-        <div class="days" role="tablist" aria-label="Días de entrenamiento" data-days></div>
-        <div class="day-progress"><span data-progress-text></span><span class="bar-track"><span class="bar-fill" data-progress></span></span></div>
-        <div class="day-body" role="tabpanel" data-day></div>
-      </div>
+    <section class="sec" id="muro" aria-labelledby="h-muro">
+      <div class="sec-h"><span>01</span><h2 id="h-muro">Muro del equipo</h2></div>
+      <form class="post" data-wall-form>
+        <label for="w-t" class="sr">Tu mensaje</label>
+        <textarea id="w-t" maxlength="280" placeholder="Contale al equipo cómo te fue hoy" required></textarea>
+        <button class="go" type="submit">Publicar</button>
+      </form>
+      <ol class="feed" data-wall></ol>
+    </section>
 
-      <aside class="dash-side">
-        <article class="card card-note">
-          <h2 class="dash-h">De tu coach</h2>
-          <blockquote data-message></blockquote>
+    <section class="sec" id="agenda" aria-labelledby="h-ag">
+      <div class="sec-h"><span>02</span><h2 id="h-ag">Agenda</h2></div>
+      <table class="agenda">
+        <thead><tr><th>Fecha</th><th>Qué</th><th>Dónde</th><th><span class="sr">Asistencia</span></th></tr></thead>
+        <tbody data-agenda></tbody>
+      </table>
+    </section>
+
+    <section class="sec" id="herramientas" aria-labelledby="h-he">
+      <div class="sec-h"><span>03</span><h2 id="h-he">Herramientas</h2></div>
+      <div class="tools">
+
+        <article class="tool">
+          <h3>¿Llego al corte?</h3>
+          <p class="tool-d">Poné tus ritmos de hoy y mirá cuánto te da la carrera completa.</p>
+          <div class="seg" role="radiogroup" aria-label="Distancia" data-race></div>
+          <div class="fields">
+            <label>Natación, cada 100 m<span class="mmss"><input type="number" inputmode="numeric" min="0" value="2" data-sw-m aria-label="minutos"> : <input type="number" inputmode="numeric" min="0" max="59" value="15" data-sw-s aria-label="segundos"></span></label>
+            <label>Bici, km/h<input type="number" inputmode="decimal" min="1" step="any" value="27" data-bk></label>
+            <label>Running, por km<span class="mmss"><input type="number" inputmode="numeric" min="0" value="6" data-rn-m aria-label="minutos"> : <input type="number" inputmode="numeric" min="0" max="59" value="15" data-rn-s aria-label="segundos"></span></label>
+            <label>Transiciones, min<input type="number" inputmode="numeric" min="0" value="12" data-tr></label>
+          </div>
+          <div class="bar3" data-split aria-hidden="true"></div>
+          <dl class="out3" data-corte></dl>
+          <p class="tool-n" data-corte-n></p>
         </article>
 
-        <article class="card" aria-labelledby="r-h">
-          <h2 class="dash-h" id="r-h">Calculá tu ritmo</h2>
-          <div class="chips" role="radiogroup" aria-label="Disciplina" data-disc></div>
-          <div class="chips chips-sm" aria-label="Distancias de carrera" data-dist></div>
-          <div class="pace-form">
-            <label>Distancia <span data-unit>km</span><input type="number" inputmode="decimal" min="0" step="any" data-d></label>
+        <article class="tool">
+          <h3>Ritmo objetivo</h3>
+          <p class="tool-d">Al revés: decí en cuánto querés hacer un tramo y te da el ritmo.</p>
+          <div class="seg" role="radiogroup" aria-label="Disciplina" data-disc></div>
+          <div class="seg seg-s" aria-label="Distancias de carrera" data-dist></div>
+          <div class="fields f4">
+            <label>Distancia, <span data-unit>km</span><input type="number" inputmode="decimal" min="0" step="any" data-d></label>
             <label>Horas<input type="number" inputmode="numeric" min="0" data-h></label>
             <label>Min<input type="number" inputmode="numeric" min="0" max="59" data-m></label>
             <label>Seg<input type="number" inputmode="numeric" min="0" max="59" data-s></label>
           </div>
-          <p class="pace-out" data-pace aria-live="polite">Poné distancia y tiempo objetivo.</p>
+          <p class="big" data-pace aria-live="polite">Poné distancia y tiempo.</p>
         </article>
 
-        <article class="card">
-          <h2 class="dash-h">Objetivos</h2>
-          <ul class="goals" data-goals></ul>
+        <article class="tool">
+          <h3>Tu ritmo de natación (CSS)</h3>
+          <p class="tool-d">Nadá 400 m y 200 m a fondo, con descanso entre los dos, y cargá los tiempos.</p>
+          <div class="fields">
+            <label>400 m<span class="mmss"><input type="number" inputmode="numeric" min="0" value="8" data-c4m aria-label="minutos"> : <input type="number" inputmode="numeric" min="0" max="59" value="20" data-c4s aria-label="segundos"></span></label>
+            <label>200 m<span class="mmss"><input type="number" inputmode="numeric" min="0" value="4" data-c2m aria-label="minutos"> : <input type="number" inputmode="numeric" min="0" max="59" value="0" data-c2s aria-label="segundos"></span></label>
+          </div>
+          <p class="big" data-css aria-live="polite"></p>
         </article>
 
-        <article class="card">
-          <h2 class="dash-h">Notas de tu coach</h2>
-          <ul class="notes" data-notes></ul>
+        <article class="tool">
+          <h3>Zonas de entrenamiento</h3>
+          <p class="tool-d">Con tu ritmo de umbral en running o tu FTP en bici.</p>
+          <div class="seg" role="radiogroup" aria-label="Disciplina" data-zdisc></div>
+          <div class="fields">
+            <label data-z-run>Ritmo de umbral, por km<span class="mmss"><input type="number" inputmode="numeric" min="0" value="5" data-zm aria-label="minutos"> : <input type="number" inputmode="numeric" min="0" max="59" value="20" data-zs aria-label="segundos"></span></label>
+            <label data-z-bike hidden>FTP, watts<input type="number" inputmode="numeric" min="1" value="200" data-ftp></label>
+          </div>
+          <table class="zt"><tbody data-zonas></tbody></table>
+          <p class="tool-n">Referencia general (zonas de Friel para running y de Coggan para bici). Las tuyas las ajusta tu coach.</p>
         </article>
-      </aside>
-    </div>
 
-    <section class="wall" aria-labelledby="w-h">
-      <div class="wall-head">
-        <div>
-          <p class="eyebrow">Entre nosotros</p>
-          <h2 class="dash-h" id="w-h">Muro del equipo</h2>
-        </div>
-        
       </div>
-      <form class="wall-form" data-wall-form>
-        <label for="w-t">Contale al equipo cómo te fue</label>
-        <textarea id="w-t" maxlength="280" placeholder="Un fondo que salió, una carrera a la que te anotaste, cómo estuvo el entrenamiento de hoy" required></textarea>
-        <div class="wall-form-foot"><span data-wall-note></span><button class="btn btn-primary" type="submit">Publicar</button></div>
-      </form>
-      <ul class="wall-list" data-wall></ul>
     </section>
-  </section>
+
+    <section class="sec" id="biblioteca" aria-labelledby="h-bi">
+      <div class="sec-h"><span>04</span><h2 id="h-bi">Biblioteca</h2></div>
+      <div class="lib" data-lib></div>
+    </section>
+
+    <section class="sec" id="beneficios" aria-labelledby="h-be">
+      <div class="sec-h"><span>05</span><h2 id="h-be">Beneficios y lo que hay ahora</h2></div>
+      <ul class="ben" data-ben></ul>
+    </section>
+  </div>
 
 </main>
-
-<script src="atletas.js?v=2" defer></script>
+<script src="atletas.js?v=3" defer></script>
 </body>
 </html>
